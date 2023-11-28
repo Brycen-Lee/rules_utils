@@ -45,12 +45,18 @@ pub struct Meta {
     created_at: [String; 10],
 }
 
+impl Meta {
+    pub fn get_severity(&self) -> Severity {
+        self.severity
+    }
+}
+
 // 严重程度枚举类型
 // Low (0-3.9)
 // Medium (4-6.9)
 // High (7-8.9)
 // Critical (9-10)
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 enum Severity {
     Low,
     Medium,
@@ -71,6 +77,15 @@ impl fmt::Display for Severity {
 
 impl Severity {
     fn get_low() -> Severity {
+        Self::Low
+    }
+    fn get_medium() -> Severity {
+        Self::Low
+    }
+    fn get_high() -> Severity {
+        Self::Low
+    }
+    fn get_critical() -> Severity {
         Self::Low
     }
 }
