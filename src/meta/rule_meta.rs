@@ -1,21 +1,23 @@
+use crate::meta::t_point::Protocol;
+use crate::meta::t_point::TechnicalPoint;
 use core::fmt;
 
 // 所有meta信息
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Meta {
-    NTec: String,
+    ns_tech: Vec<TechnicalPoint>, // desc.json -- NTec
     attacker: u8,
     analysis: bool,
-    app: [u16; 10],
+    app: Vec<String>, // desc.json -- affected_product
     att_tac: String,
     att_tec: String,
     attack_direction: u8,
     attack_result: u8,
     classtype: String,
-    cnnvd: [String; 10],
+    cnnvd: Vec<String>,
     confidence: u8,
-    cve: [String; 10],
-    doc_links: [String; 10],
+    cve: Vec<String>,
+    doc_links: Vec<String>,
     enabled: bool,
     flag: bool,
     gid: u8,
@@ -27,27 +29,34 @@ pub struct Meta {
     optional: String,
     os: String,
     priority: u8,
-    protocol: String,
-    references: [String; 10],
+    protocol: Protocol,
+    references: Vec<String>,
     rev: u8,
     severity: Severity,
     sfb: u8,
     sid: u16,
-    source: [String; 10],
+    source: Vec<String>,
     suggestions: String,
-    threat_tag: [String; 10],
+    threat_tag: Vec<String>,
     updated_at: String,
     version: u8,
-    RTags: [String; 10],
+    RTags: Vec<String>,
     RConfidence: u8,
-    RTechniques: [String; 10],
+    RTechniques: Vec<String>,
     hl_pos: u8,
-    created_at: [String; 10],
+    created_at: Vec<String>,
 }
 
 impl Meta {
     pub fn get_severity(&self) -> Severity {
         self.severity
+    }
+    // if enum Severity don't derive 'Copy' trait
+    // pub fn get_severity(&self) -> &Severity {
+    //     &self.severity
+    // }
+    pub fn set_severity(&mut self, severity: Severity) {
+        self.severity = severity
     }
 }
 
@@ -57,7 +66,10 @@ impl Meta {
 // High (7-8.9)
 // Critical (9-10)
 #[derive(Debug, Clone, Copy)]
+// #[derive(Debug, Clone, Copy, Default)]
 enum Severity {
+    // add Default trait, set default value to Severity enum(unstable)
+    // #[default]
     Low,
     Medium,
     High,
@@ -75,27 +87,36 @@ impl fmt::Display for Severity {
     }
 }
 
+// add Default trait for Severity
+impl Default for Severity {
+    fn default() -> Self {
+        Severity::Low
+    }
+}
+
 impl Severity {
     fn get_low() -> Severity {
         Self::Low
     }
     fn get_medium() -> Severity {
-        Self::Low
+        Self::Medium
     }
     fn get_high() -> Severity {
-        Self::Low
+        Self::High
     }
     fn get_critical() -> Severity {
-        Self::Low
+        Self::Critical
     }
 }
 
 #[cfg(test)]
 mod test_compound_types {
+    use super::Meta;
     use super::Severity;
 
+    // test severity enum
     #[test]
-    fn test_severity() {
+    fn test_severity1() {
         let low = Severity::Low;
         let medium = Severity::Medium;
         println!("{}", low);
@@ -104,6 +125,17 @@ mod test_compound_types {
         let low1 = Severity::get_low();
         println!("{:#?}", low1);
     }
+
+    #[test]
+    fn test_severity_in_meta1() {
+        let meta = Meta {
+            severity: Severity::get_high(),
+            ..Default::default()
+        };
+        println!("{:#?}", meta);
+    }
+
+    // test Meta struct
 }
 
 #[cfg(test)]

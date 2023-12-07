@@ -1,5 +1,5 @@
 {
-    "NTec": "NT006.002",
+    "NTec": "NT011",
     "attacker": 4,
     "analysis": false,
     "app": [],
@@ -7,41 +7,48 @@
     "att_tec": "T1190",
     "attack_direction": 0,
     "attack_result": 0,
-    "classtype": "0x4",
-    "cnnvd": [],
-    "confidence": 65,
-    "cve": [],
+    "classtype": "0x5",
+    "cnnvd": [
+        "CNNVD-202006-1556"
+    ],
+    "confidence": 60,
+    "cve": [
+        "CVE-2020-11989"
+    ],
     "doc-links": [],
     "enabled": true,
     "flag": true,
     "gid": 1,
-    "id": 103045358,
+    "id": 103045366,
     "kill_chain_phase": "0x3",
-    "msg": "I Doc View Remote Code Execution",
-    "name": "I Doc View远程代码执行漏洞",
-    "msg_ch": "I Doc View是一个在线文档。该产品存在安全漏洞，攻击者把存在命令执行的jsp脚本放到docview目录下，利用特殊的方式访问该jsp脚本，可以导致远程代码执行。",
+    "msg": "Apache Shiro Authentication Bypass Vulnerability(CVE-2020-11989)",
+    "name": "Apache Shiro 身份认证绕过漏洞(CVE-2020-11989)",
+    "msg_ch": "Apache Shiro是美国阿帕奇（Apache）软件基金会的一套用于执行认证、授权、加密和会话管理的Java安全框架。Apache Shiro 1.5.3之前版本中存在安全漏洞。攻击者可借助特制请求利用该漏洞绕过身份验证。",
     "optional": "",
     "os": "0x3",
     "priority": 0,
     "protocol": "HTTP",
-    "references": [],
+    "references": [
+        "cve,CVE-2020-11989"
+    ],
     "rev": 1,
     "severity": "0x2",
     "sfb": 3,
-    "sid": 103045358,
+    "sid": 103045366,
     "source": [
         "IDS",
         "NGIDS"
     ],
-    "suggestions": " 目前厂商还未提供此漏洞的相关补丁或者升级程序，建议使用此软件的用户随时关注厂商主页以获取最新版本：https://www.idocv.com/about.html",
+    "suggestions": "目前厂商已发布升级补丁以修复漏洞，建议及时安装升级补丁。补丁获取链接： https://shiro.apache.org/news.html",
     "threat_tag": [
-        "0xb"
+        "0x5d",
+        "0x53"
     ],
-    "updated_at": "2023_11_27",
+    "updated_at": "2023_11_30",
     "version": 3,
     "RTags": [],
     "RConfidence": 0,
     "RTechniques": [],
     "hl_pos": 0,
-    "created_at": "2023_11_27"
+    "created_at": "2023_11_30"
 }
