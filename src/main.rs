@@ -15,6 +15,7 @@ fn banner() {
 
 fn main() -> Result<(), Box<dyn Error>> {
     // start the desktop app.
+    println!("++suricata rules facility++");
     println!("start running");
     let desc_path = r"C:\Users\yonggui_li\Downloads\NSPattern_ngisc_1000.239.tar\NSPattern_nsc_1000.239\description.json";
     let desc_file = fs::read_to_string(desc_path)?;
