@@ -9,10 +9,12 @@ use std::fs::File;
 
 mod meta;
 
-fn banner() {}
+fn banner() {
+    let banner_str = "welcome to use suricata rules tool";
+}
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let desc_path = r"C:\Users\yonggui_li\Downloads\NSPattern_nsc_1000.239.tar\NSPattern_nsc_1000.239\description.json";
+    let desc_path = r"C:\Users\yonggui_li\Downloads\NSPattern_ngisc_1000.239.tar\NSPattern_nsc_1000.239\description.json";
     let desc_file = fs::read_to_string(desc_path)?;
     let desc_json: Value = serde_json::from_str(&desc_file)?;
     let mut rule_cves_map: HashMap<String, Vec<String>> = HashMap::new();
